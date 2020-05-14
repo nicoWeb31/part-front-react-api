@@ -1,4 +1,5 @@
 import React from 'react';
+import Home from './core/Home';
 
 
 class App extends React.Component {
@@ -10,7 +11,10 @@ class App extends React.Component {
     return (
       <div className="container">
         <h1>React  Frontend</h1>
-      </div>
+        
+        <Home/>
+
+        </div>
     );
   }
 }
