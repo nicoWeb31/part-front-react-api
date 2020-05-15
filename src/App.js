@@ -1,21 +1,20 @@
 import React from 'react';
-import Home from './core/Home';
+
+import MainRouter from './mainRouter';
+import {BrowserRouter} from 'react-router-dom';
 
 
 class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {  };
-  }
+
   render() {
     return (
-      <div className="container">
-        <h1>React  Frontend</h1>
-        
-        <Home/>
+      <BrowserRouter>
 
-        </div>
-    );
+        <MainRouter/>
+      </BrowserRouter>
+      
+      
+      );
   }
 }
 
