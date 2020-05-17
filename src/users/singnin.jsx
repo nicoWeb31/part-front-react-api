@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import {Signin,autheticate} from '../auth'
 
 
 class singnin extends Component {
@@ -36,23 +37,6 @@ class singnin extends Component {
     // }
 
 
-
-    // =========================================================================
-    // autheticate(data)
-    // =========================================================================
-
-    autheticate(jwt,next){
-        if(typeof window !== undefined){
-            //sauvgarge dans le local storage
-            localStorage.setItem("jwt",JSON.stringify(jwt));
-            next();
-        }
-    }
-
-
-
-
-
     // =========================================================================
     // clickSubmit
     // =========================================================================
@@ -72,13 +56,13 @@ class singnin extends Component {
         };
         console.log(user);
         //singup 
-        this.Signin(user).then(data =>{
+        Signin(user).then(data =>{
             if(data.error) {
                 this.setState({error : data.error,loading:false})
             }else{
 
                 //authenticate user in local storage
-                this.autheticate(data,()=>{
+                autheticate(data,()=>{
                     this.setState({redirectTorefer:true})
                 });
                 //redirect 
@@ -86,27 +70,6 @@ class singnin extends Component {
             }
         })
     }
-
-    // =========================================================================
-    // singnin
-    // =========================================================================
-
-    Signin = (user) =>{
-        return fetch("http://localhost:8080/signin",{
-            method:'POST',
-            headers:{
-                Accept : "application/json",
-                "Content-Type":"application/json"
-            },
-            body: JSON.stringify(user)
-        })
-        .then(Response=>{
-            return Response.json()
-        })
-        .catch(err=> console.log(err))
-    }
-
-
 
 
 

@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {signup} from '../auth'
+
 
 
 class Signup extends Component {
@@ -51,7 +53,7 @@ class Signup extends Component {
         };
         //console.log(user);
         //singup 
-        this.Signup(user).then(data =>{
+        signup(user).then(data =>{
             if(data.error) {
                 this.setState({error : data.error})
             }else{
@@ -68,24 +70,6 @@ class Signup extends Component {
         })
     }
 
-    // =========================================================================
-    // singunp
-    // =========================================================================
-
-    Signup= (user) =>{
-        return fetch("http://localhost:8080/singup",{
-            method:'POST',
-            headers:{
-                Accept : "application/json",
-                "Content-Type":"application/json"
-            },
-            body: JSON.stringify(user)
-        })
-        .then(Response=>{
-            return Response.json()
-        })
-        .catch(err=> console.log(err))
-    }
 
     render() {
 
